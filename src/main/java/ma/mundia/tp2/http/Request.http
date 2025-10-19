@@ -1,0 +1,3 @@
+GET http://localhost:8085/product
+###
+GET http://localhost:8085/produit/1
