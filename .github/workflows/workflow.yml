@@ -20,4 +20,8 @@ jobs:
       - name: java installer
         run: echo "java installer"
       - name: maven
-        run: mvn -B package --file pom.xml
+        run: mvn -B package --file pom.xml -e -X
+      - name: Afficher les tests échoués
+        run: cat target/surefire-reports/*.txt
+
+
