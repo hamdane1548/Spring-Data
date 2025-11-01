@@ -14,7 +14,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: 'maven'
       - name: check_java
         run: java --version
+      - name: java installer
+        run: echo "java installer"
       - name: maven
         run: mvn -B package --file pom.xml
