@@ -6,6 +6,20 @@ on:
 jobs:
   push_main:
     runs-on: ubuntu-latest
+    services:
+       postgres:
+         image: postgres:15
+         env:
+           POSTGRES_USER: postgres
+           POSTGRES_PASSWORD: postgres
+           POSTGRES_DB: Product_db
+         ports:
+           - 5432:5432
+         options: >-
+           --health-cmd "pg_isready"
+           --health-interval 10s
+           --health-timeout 5s
+           --health-retries 5
     steps:
       - name: Checkout_repo
         uses: actions/checkout@v4
@@ -17,6 +31,12 @@ jobs:
           cache: 'maven'
       - name: check_java
         run: java --version
+      - name: Wait for PostgreSQL
+        run: |
+            echo "Waiting for Postgres to be ready..."
+            until pg_isready -h localhost -p 5432 -U postgres; do
+              sleep 2
+            done
       - name: java installer
         run: echo "java installer"
       - name: maven
