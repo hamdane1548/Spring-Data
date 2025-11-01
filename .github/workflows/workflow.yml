@@ -17,4 +17,4 @@ jobs:
       - name: check_java
         run: java --version
       - name: maven
-        run: mvn clean install
+        run: mvn -B package --file pom.xml
