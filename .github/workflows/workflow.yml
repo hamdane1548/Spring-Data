@@ -8,11 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout_repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: installer_jdk
         uses: actions/setup-java@v4
         with:
-          java-version: '25'
+          java-version: '17'
           distribution: 'temurin'
       - name: check_java
         run: java --version
